@@ -121,49 +121,14 @@ public:
 		//Draw Textures
 		for (auto& i : this->meshes)
 		{   
-			//glActiveTexture(0);
-			//glBindTexture(GL_TEXTURE_2D, 0);
+			this->overrideTextureDiffuse.bind(material->getDiffuseID());
+			//this->overrideTextureDiffuse.bind(material->getDiffuseID());
 
-			glActiveTexture(GL_TEXTURE0 + material->getDiffuseID());
-			glBindTexture(GL_TEXTURE_2D, overrideTextureDiffuse.getID());
-			//glBindTexture(GL_TEXTURE_2D, *depthMap);
-			//cout << " id:  " << overrideTextureDiffuse.getID() << endl;
+			ourShader.set1i( material->getShadowMapID(), "material.shadowMap");
+			glActiveTexture(GL_TEXTURE0 + material->getShadowMapID()); // activate texture unit 1
+			//glActiveTexture(GL_TEXTURE0 + 1); 
+			glBindTexture(GL_TEXTURE_2D, *depthMap); // bind the depth map texture to unit 1
 
-			glActiveTexture(GL_TEXTURE0 + material->getShadowMapID());
-			glBindTexture(GL_TEXTURE_2D, *depthMap);
-
-
-			//cout << " id:  " << overrideTextureDiffuse.getID() << endl;
-			
-			
-			
-			//cout << " id:  " << overrideTextureDiffuse.getID() << endl;
-
-			cout << "GET DIFF: " << material->getDiffuseID() << "GET SHADOW: " << material->getShadowMapID() << endl;
-		
-			
-			//glActiveTexture(GL_TEXTURE0 + material->getShadowMapID());
-			//glBindTexture(GL_TEXTURE_2D, *depthMap);
-
-			
-
-
-
-			//glActiveTexture(0);
-			//glBindTexture(GL_TEXTURE_2D, 0);
-
-		
-
-	
-
-			
-
-			 //cout << overrideTextureDiffuse.getID() << endl;
-			//glActiveTexture(GL_TEXTURE1);
-			//glBindTexture(GL_TEXTURE_2D, overrideTextureSpecular.getID());
-
-			//this->overrideTextureDiffusePointer->bind(0);
-			//this->overrideTextureSpecular.bind(1);
 		}
 
 		
